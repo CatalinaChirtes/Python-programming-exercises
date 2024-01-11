@@ -2,25 +2,25 @@ from itertools import permutations
 
 
 # reading the data from the dictionary and returning a set with the words from it
-def load_dictionary(file_name):
+def load_dictionary(file_name: str) -> set:
     with open(file_name, 'r') as file:
         return set(word.strip() for word in file)
 
 
 # creating the permutations needed in building the anagrams
-def generate_anagrams(word):
+def generate_anagrams(word: str) -> set:
     word_permutations = permutations(word)
     anagrams = {"".join(permutation) for permutation in word_permutations}
     return anagrams
 
 
 # filtering only the anagrams that exist in our dictionary file
-def find_meaningful_anagrams(anagrams, word, dictionary):
+def find_meaningful_anagrams(anagrams: set, word: str, dictionary: set) -> list:
     meaningful_anagrams = [anagram for anagram in anagrams if anagram in dictionary and anagram != word]
     return meaningful_anagrams
 
 
-def display_anagrams(meaningful_anagrams, word):
+def display_anagrams(meaningful_anagrams: list, word: str) -> None:
     if meaningful_anagrams:
         print(f"Meaningful anagrams of '{word}':")
         for anagram in meaningful_anagrams:
@@ -29,7 +29,7 @@ def display_anagrams(meaningful_anagrams, word):
         print(f"No meaningful anagrams found for '{word}'.")
 
 
-def main():
+def main() -> None:
     dictionary = load_dictionary('dictionary.txt')
     # read word from keyboard
     input_word = input("Enter a word: ").strip().lower()

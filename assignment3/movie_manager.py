@@ -1,7 +1,7 @@
 MOVIES_FILE = "movies.txt"
 
 
-def display_main_menu():
+def display_main_menu() -> None:
     print("----------------------------------------------------------\n")
     print("Movie Management System Main Menu\n")
     print("1. Add a movie")
@@ -13,7 +13,7 @@ def display_main_menu():
 
 
 # Function to read the movies from the file
-def read_movies_from_file():
+def read_movies_from_file() -> list:
     try:
         with open(MOVIES_FILE, "r") as file:
             movies = [line.strip().split(",") for line in file.readlines()]
@@ -24,14 +24,14 @@ def read_movies_from_file():
 
 
 # Function to write a movie to the file
-def write_movies_to_file(movies):
+def write_movies_to_file(movies: list) -> None:
     with open(MOVIES_FILE, "w") as file:
         for movie in movies:
             file.write(f"{movie[0]},{movie[1]}\n")
 
 
 # Function to add a movie to the list of movies
-def add_movie():
+def add_movie() -> None:
     while True:
         title = input("Enter the movie title: ")
         rank = input("Enter the movie rank: ")
@@ -55,7 +55,7 @@ def add_movie():
 
 
 # Function to display all movies
-def display_movies():
+def display_movies() -> None:
     movies = read_movies_from_file()
     if movies:
         print("All the available movies:")
@@ -66,7 +66,7 @@ def display_movies():
 
 
 # Function to search for a specific movie
-def search_movie():
+def search_movie() -> None:
     search_title = input("Enter the title of the movie you are searching for: ")
     movies = read_movies_from_file()
     found_movies = [movie for movie in movies if movie[0] == search_title]
@@ -79,7 +79,7 @@ def search_movie():
 
 
 # Function to remove a specific movie
-def remove_movie():
+def remove_movie() -> None:
     while True:
         remove_title = input("Enter the title to remove: ")
         movies = read_movies_from_file()
@@ -95,11 +95,11 @@ def remove_movie():
 
 
 # Function to exit the program
-def exit_option():
+def exit_option() -> None:
     exit("Exiting the movie management system. Thanks for coming by :)")
 
 
-def error_handler():
+def error_handler() -> None:
     print("Invalid option. Please try again.\n")
 
 

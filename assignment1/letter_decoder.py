@@ -1,3 +1,4 @@
+# replacements dictionary for decoding
 replacements = {
         '!': 's',
         '@': 'h',
@@ -11,30 +12,30 @@ replacements = {
 
 
 # decoding the content of the file
-def decode(text):
+def decode(text: str) -> str:
     decoded_text = ''.join(replacements.get(c, c) for c in text)
     return decoded_text
 
 
 # reading the file
-def read_file(file_name):
+def read_file(file_name: str) -> str:
     with open(file_name, 'r') as file:
         return file.read()
 
 
 # writing the decoded text to a new file
-def write_file(file_name, decoded_text):
+def write_file(file_name: str, decoded_text: str) -> None:
     with open(file_name, 'w') as decoded_file:
         decoded_file.write(decoded_text)
 
 
 # extracting the words starting with 'a' or 'A' in a list and displaying them
-def select_a_words(decoded_text):
+def select_a_words(decoded_text: str) -> None:
     words_with_a = [word for word in decoded_text.split() if word.startswith('a') or word.startswith('A')]
     print(words_with_a)
 
 
-def file_processing():
+def file_processing() -> None:
     text = read_file('sherlock.txt')
     decoded_text = decode(text)
     write_file('sherlock_decoded_letter.txt', decoded_text)
